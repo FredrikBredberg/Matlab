@@ -1,0 +1,39 @@
+clear all
+
+Uin= 1;
+R = 1000;
+C = 150 * 10 ^-9;
+
+fas = [-18 -21 -28 -29 -31 -33 -33 -34 -35 -37 -38 -45 -85 -140];
+frekvens = [400 450 500 550 600 650 700 750 800 850 900 1000 10000 100000];
+v_in = [2 2 2 2 2 2 2 2 2 2 2 2 2 2];
+v_ut = [1.41 1.49 1.53 1.57 1.61 1.64 1.69 1.73 1.77 1.81 1.84 1.87 0.08 0.001];
+
+
+
+f = logspace (0, 6, 1000);
+
+w = 2 * pi * f ; 
+
+Zc = 1. / j * w * C;
+
+
+H = 1./(1 + j*w*R*C) ;
+
+abs(H);
+Hdb = 20 * log10(v_ut./v_in);
+
+subplot(2,1,1);
+semilogx (frekvens, Hdb);
+grid on;
+xlabel ('Frekvens');
+ylabel ('beloppet av H (dB)');
+
+
+
+subplot (2,1,2);
+semilogx(frekvens, fas);
+grid on;
+ylabel ('Fasen av H (grader)');
+xlabel ('Frekvens');
+ 
